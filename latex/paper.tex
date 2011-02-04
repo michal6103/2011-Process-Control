@@ -6,6 +6,28 @@
 
 \bibpunct{(}{)}{;}{a}{,}{}
 
+\usepackage{color}
+\usepackage{listings}
+\lstset{ %
+language=Python,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\tiny,
+xleftmargin= 10pt,
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=none,   		% adds a frame around the code
+tabsize=2,  		% sets default tabsize to 2 spaces
+captionpos=b,   		% sets the caption-position to bottom
+breaklines=true,    	% sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%}{)}          % if you want to add a comment within your code
+}
+
 \begin{document}
 \begin{frontmatter}
 \title{Simulation of 2D physics of hand drawn objects using OpenCV and Box2D}
@@ -25,89 +47,92 @@ Maximum 5 keywords.
 
 \section{Introduction}
 This paper describes applying of Newtonian physics to hand drawn objects
-recognized in image from camera. Simulation of physics is used in many modern applications. You can find in implementations used by 3D drawing and animation programs, more complex used in game engines or exact and precise simulation in CAE programs. Paper describes process of animation of hand drawn object, from a capturing phase, over recognition of the objects, interpretation objects in physical engine, to animation of such objects. This approach can be applied in education of physics at elementary schools, in interactive blackboards, or in games.
+recognized in image from camera. Simulation of physics is used in many modern
+applications. You can find in implementations used by 3D drawing and animation
+programs, more complex used in game engines or exact and precise simulation in
+CAE programs. Paper describes process of animation of hand drawn object, from a
+capturing phase, over recognition of the objects, interpretation objects in
+physical engine, to animation of such objects. This approach can be applied in
+education of physics at elementary schools, with interactive blackboards, or in
+computer games.
 
+\section{Object detection and Open Computer Vision library}
+To apply a physics to hand drawn objects we need to identify and isolate
+objects from image. We have used a web camera as a source and Open Computer
+Vision library as processing tool of the images.
 
+\subsection{OpenCV}
+In regards the book of \cite{OpenCV} OpenCV  is a library for open source
+programming funtions for real time computer vision, with more than five hundred
+optimized algorithms. It can be used with C++, C and Python. We chose Python for
+implementation in our application.
 
-Figure~\ref{fig:song} demonstrates placement of figures. Place figures at
-the top or bottom of a column wherever possible, as close as possible
-to the first references to the in the paper. Restrict them to
-single-column width please.
+Simple image capture is shown in Listing \ref{Capture}.
+\begin{lstlisting}[caption=Query image frame from web camera, label=Capture]
+self.camera = cv.CaptureFromCAM(-1) %\label{Capture:init})
+self.image = cv.QueryFrame(self.camera) %\label{Capture:query})
+self.DetectOutline(self.image)
+\end{lstlisting}
+In line \ref{Capture:init} of listing \ref{Capture} we initialize our web
+camera. In variable camera is allocated and initialized object that can query
+camera for new image. Then as we see in \ref{Capture:query} we can get the
+image from camera and store it in the variable named image. Now when we have
+image data stoerd in the variable, we can process data to find outlines.
+\begin{lstlisting}[caption=Outline detection, label=Detect]
+def DetectOutline(self, image):
+  image_size = cv.GetSize(image)
+  grayscale = cv.CreateImage(image_size, 8, 1)	%\label{Detect:grayscale})
+  cv.CvtColor(image, grayscale, cv.CV_BGR2GRAY)
+  cv.EqualizeHist(grayscale, grayscale)	%\label{Detect:equalize})
+  storage = cv.CreateMemStorage(0)
+  cv.Threshold(grayscale, grayscale, 50, 255, cv.CV_THRESH_BINARY) %\label{Detect:threshold})
+  self.contours = cv.FindContours(grayscale, %\label{Detect:contours})
+    cv.CreateMemStorage(),
+    cv.CV_RETR_TREE,
+    cv.CV_CHAIN_APPROX_SIMPLE)
+  if len(self.contours) > 0:
+    self.contours = cv.ApproxPoly (self.contours, %\label{Detect:approx})
+      storage,
+      cv.CV_POLY_APPROX_DP,
+      1.5,
+      1)
+  return self.contours
+\end{lstlisting}
+In function in Listing \ref{Detect} is shown how to find outlines of objects in
+image. We convert image to gray scale as seen on line \ref{Detect:grayscale}.
+Then we run histogram equalization (line: \ref{Detect:equalize}).
+Equalization makes objects better visible and gives better output for
+thresholding (line: \ref{Detect:threshold}) which makes black and white image
+prepared for outline detection (line: \ref{Detect:contours}).
 
-\subsection{Equations}
-Center equations and place the numbers on the right as follows:
-\begin{equation}
-a^2+b^2=c^2
-\end{equation}
+After outline detection we have tree of contours stored in the variable
+self.contours. These trees are iterable objects sorted from outer to inner
+outline connected by property h\_next and v\_next that we will describe in
+paragraph about creation of objects from outlines.
 
-\begin{figure}
-\vspace*{3cm}
-\caption{Example of a figure, to demonstrate the effect of
-  long captions which run onto a second line}
-\label{fig:song}
-\end{figure}
+Countour can be very complicated and consist of thousands of points, which could
+cause too complicated objects. Complicated objects is time demanding to
+simulate, that is why we use polynomial approximation of the contour points.
+(line:~\ref{Detect:approx}).
 
-\section{Transfer of your files to PC'11}
+\section{Physics simulation in Box2D}
 
-If it is not possible to send the electronic version of the paper and
-summary, the paper version (two originals, not a photocopy) of your
-full paper and abstract should be sent to the conference secretariat
-by registered mail or courier service. 
+\subsection{World}
+\subsection{Gravity}
+\subsection{Objects}
+\subsubsection{Body}
+\subsubsection{Shapes and collisions}
+\subsection{Tesselation}
 
-The electronic version of your full paper and abstract are to be sent
-via web page of the conference. The registration process makes use of
-an internet database system and consists of three consecutive steps
-(detailed description and help will be available on-line):
-\begin{enumerate}
-\item Author registration to obtain author's PIN. Each author or
-  participant of the conference will receive a unique number and
-  password. This number will identify the author when submitting the
-  paper, creating invoice, etc. Persons that participated at past PC have
-  their PIN already registered.  Based on PIN and password, the
-  authors are be able to update or modify their coordinates (address,
-  email, affiliation, etc) at any time. This information is secured by
-  a password that can be send to authors again if forgotten.
-\item Paper registration. Each accepted paper with unique ID will be
-  added to the database via internet form. This contains a field where
-  files can be attached and it will be sent to organisers together
-  with other information on the form. Only the respective authors will
-  be able to upload the title, paper, and abstract. Also, they will be
-  able to modify this information later.
-\item Invoice generation. The participants of the conference will
-  fill in the web form and an invoice will automatically be generated
-  for them. 
-\end{enumerate}
-
-The name of your file can be arbitrary.
-
-Since the final electronic version will be the PDF format we prefer to
-receive PDF files. The authors are encouraged to use hypertext
-capabilities of the Acrobat software.  Before sending the PDF files to
-the please test viewing and printing your file with Adobe Acrobat
-Reader (Version 5.0). If you send the PS file, test it with
-Ghostview. 
-
-Important note: Please do not generate PDF with version 1.5 or higher.
-The Adobe company provides Reader for this PDF version only for some
-computer platforms and some people may not be able to read your
-documents. This is for example case of Acrobat 6. Check its settings
-and choose optimisations for version 1.4.
-
-If your file exceeds the size of 10 MB, contact the organisers as this
-is the limit of the web server.
-
-The list of references must be at the end of the paper. When
-referring to them in the text, type the corresponding reference
-as \cite{AbTaRu:54},  \cite{Abl:56},
-\cite{Keo:58}.
-References should be given in the standard style as below.
+\section{Future work}
+Identifikacia objektov
+Sledovanie objektov a morfing
+Interakcia hybucich sa objektov zachytenych kamerov s Box2D reprezentaciou
 
 \section*{Acknowledgments}
 The work was supported by a grant (No. NIL-I-007-d) from Iceland, Liechtenstein 
 and Norway through the EEA Financial Mechanism and the Norwegian Financial 
 Mechanism. This project is also co-financed from the state budget of the Slovak Republic..
-
-
 
 %If you use BibTeX comment the second line, if not comment the first line
 \bibliography{pcbib}
