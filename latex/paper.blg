@@ -2,44 +2,44 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: paper.aux
 The style file: ifacconf.bst
 Database file #1: pcbib.bib
-You've used 1 entry,
+You've used 2 entries,
             2921 wiz_defined-function locations,
-            596 strings with 4895 characters,
-and the built_in function-call counts, 535 in all, are:
-= -- 38
-> -- 20
-< -- 1
-+ -- 7
-- -- 6
-* -- 37
-:= -- 86
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 6
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 39
-empty$ -- 43
-format.name$ -- 11
-if$ -- 102
+            602 strings with 4999 characters,
+and the built_in function-call counts, 950 in all, are:
+= -- 69
+> -- 30
+< -- 2
++ -- 11
+- -- 9
+* -- 58
+:= -- 155
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 11
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 74
+empty$ -- 84
+format.name$ -- 15
+if$ -- 187
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 9
-newline$ -- 14
-num.names$ -- 4
-pop$ -- 22
+missing$ -- 17
+newline$ -- 19
+num.names$ -- 8
+pop$ -- 40
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 11
 quote$ -- 0
-skip$ -- 17
+skip$ -- 32
 stack$ -- 0
-substring$ -- 11
-swap$ -- 18
+substring$ -- 22
+swap$ -- 31
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
+type$ -- 12
 warning$ -- 0
-while$ -- 3
+while$ -- 6
 width$ -- 0
-write$ -- 20
+write$ -- 32

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  4 FEB 2011 15:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.2.3)  6 FEB 2011 02:38
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -447,31 +447,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9.79996> on input line 33.
 \c@sv@footnote=\count124
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./paper.bbl) [2
-
-] (./paper.aux) ) 
+] (./paper.bbl) [2]
+(./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4121 strings out of 493848
- 49120 string characters out of 1152822
+ 4139 strings out of 493848
+ 49358 string characters out of 1152824
  184145 words of memory out of 3000000
- 7376 multiletter control sequences out of 15000+50000
+ 7394 multiletter control sequences out of 15000+50000
  14105 words of font info for 41 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  30i,8n,40p,222b,1521s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-rm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on paper.pdf (2 pages, 177283 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on paper.pdf (2 pages, 181535 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
