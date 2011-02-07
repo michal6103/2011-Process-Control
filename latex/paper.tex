@@ -2,6 +2,7 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{url}
 \usepackage{natbib}
 
 \bibpunct{(}{)}{;}{a}{,}{}
@@ -126,7 +127,7 @@ There is lot of physics engines that can be used for simulation of physics.
 Because we wanted to simulate physics only in 2D we could, code our own
 implementation of physics, or use one of commercial or open source engines. We
 chose Box2D[\cite{GameEngines}], which is open source 2D physiscs engine with
-posibility to simulate rigid body objects and their collisions.
+possibility to simulate rigid body objects and their collisions.
 \subsection{World}
 To create physics simulation we need to create world. World is object that
 manages memory, objects and simulation. Creation of world is shown in Listing
@@ -142,41 +143,161 @@ self.world = box2d.b2World(self.worldAABB, gravity, doSleep)
 \end{lstlisting}
 First we have to create boundaries of the world. We define them as vectors from
 bottom left (line: \ref{World:lower}) to top right (line:
-\ref{World:upper}). Objects have to be inside the boudaries, when an object
+\ref{World:upper}). Objects have to be inside the boundaries, when an object
 touch the boundary it gets stuck. Then we define gravity vector (line:
 \ref{World:gravity}). The last thing before creation of the world we allow
 objects to sleep(line: \ref{World:sleep}). Object that are not moving fall
 asleep, then are ignored by the engine. Last line of Listing \ref{World} creates
 the world.
 
-When we have world created we are ready to create objects from outlines.
+World is created and we are ready to create objects from outlines.
 \subsection{Objects}
-Every object that is simulated in Box2D consists of body and shapes.
+Every object that is simulated in Box2D consists of body and shapes. Our objects
+are described by the contour tree. To create objects we need to iterate contour
+tree, find contours that belongs to together and create objects for these
+contours.
+\subsubsection{Contour tree}
+Contour tree is object in which are stored points of each contour. Contours are
+connected by functions returning reference to other contours with h\_next() and
+v\_next(). h\_next() is referencing to deeper contour, and v\_next is
+referencing to another object contour. To iterate over all contours we have
+created recursive function shown in Listing: \ref{CreateObjects}.
+\begin{lstlisting}[label=CreateObjects,caption=Function to iterate through
+contour tree]
+def CreateObjectsFromCountours(self,cont,h=0,v=0):
+  if v>0:	%\label{CreateObjects:depth})
+    density = 10.0 %\label{CreateObjects:density10})
+  else:
+    density = 0 %\label{CreateObjects:density0})
+  if len(cont)>8:
+    self.CreateObject(cont,h,v) 
+
+  if cont.v_next():
+    v += 1
+    self.CreateObjectsFromCountours(cont.v_next(),h,v)
+    v -= 1
+
+  if cont.h_next():
+    h += 1
+    self.CreateObjectsFromCountours(cont.h_next(),h,v)
+\end{lstlisting}
+We iterate through contour tree. First level is outer contour of the image
+(Line: \ref{CreateObjects:depth}), because we do not want the outer contour to
+move, we set it as static byt setting density to 0 (Line:
+\ref{CreateObjects:density0}). Every other contour is dynamic body with density
+set to 10 (Line: \ref{CreateObjects:density10}).
+
+When we know what type of object we will create, we can create bodies and
+shapes for our contours.
 \subsubsection{Bodies, shapes and collisions}
-Bodies are skelet used by shapes. One body can contain more shapes, but one
-shape could be attached to only one body. Box2d is rigid body
-physics engine, that mean that shapes attached to body can not move against
-other, or body.
+Bodies are backbone used by shapes. One body can contain more shapes, but one
+shape could be attached to only one body. Box2d is rigid body physics engine,
+that mean that shapes attached to body can not move against other, or body. Body
+have position and velocity. Forces, torques and impulses can be applied to body
+[\cite{Box2DManual}].  Bodies just hold the shapes. Shapes are elements that
+collide together.
+
+Listing \ref{Objects} shows how to create object from outer contour: 
+\begin{lstlisting}[name=Objects,label=Objects,caption=Creation of object from
+outer contour]
+def CreateObject(self, cont, h,v):
+  contM = []
+  for point in cont:
+    x = point[0]/30.0	%\label{Objects:scaling})
+    y = point[1]/30.0
+    contM.append((x,y))
+    
+  bd=box2d.b2BodyDef() %\label{Objects:CreateBody})
+  bd.position = ( 0.0, 0.0 )
+  
+  edgeDef=box2d.b2EdgeChainDef() %\label{Objects:CreateChain})
+  edgeDef.setVertices(contM) %\label{Objects:AssignVertices})
+
+  if v==0:
+    body = self.world.CreateBody(bd)
+    try:
+      self.contourBodies.append(body)
+    except:
+      self.contourBodies = [body] %\label{Objects:CountourBodies})
+      body.CreateShape(edgeDef) %\label{Objects:AttachShape})
+\end{lstlisting}
+Image size is measured in pixels and Box2D units are kilograms, meters,
+and seconds (KMS) we should scale images coordinates to fit in 0.1m to
+10m. In that scale is performance of Box2D the best. We are doing it by
+dividing of value of pixel coordinates by 30.0 (Line: \ref{Objects:scaling})
+
+Then we create a body definition that will represent our contour(Line:
+\ref{Objects:CreateBody}) and set up it initial possition in next line.
+
+After that we create shape of body as chain of edges (Line:
+\ref{Objects:CreateChain}) and assign the array of vertices to it (Line:
+\ref{Objects:AssignVertices}). Edges are special type of shapes that have no
+mass, is represented as line betven vertices that collide with other non-edge
+objects. Edges are easy to create because they do not have to be concave unlike
+polygons.
+
+At last we attach this shape to created body \ref{Objects:AttachShape}. Because
+Box2D does not keep track about body definitions, we have to store bodies in to
+array for later use\ref{Objects:CountourBodies}.
+
+Listing of the function CreateObject() continous in Listing \ref{Objects}. This
+part of function creates dynamic objects inside the outer contour.
+\begin{lstlisting}[name=Objects,firstnumber=auto,label=Objects,caption=Creation of objecs] if v == 1: try:
+      body = self.objectBodies[h]
+    except:
+      body = self.world.CreateBody(bd)
+      self.objectBodies[h] = body
+    polyline = []
+    for (x,y) in cont:
+      polyline.append(p2t.Point(x,y))
+    cdt = p2t.CDT(polyline)
+    triangles = cdt.triangulate()
+    for t in triangles:
+      x1 = t.a.x/30.0
+      y1 = t.a.y/30.0
+      x2 = t.b.x/30.0
+      y2 = t.b.y/30.0
+      x3 = t.c.x/30.0
+      y3 = t.c.y/30.0
+      if math.hypot(x2-x1,y2-y1)<0.1:
+        x2 = x2 + math.copysign(0.1, x2-x1)
+        y2 = y2 + math.copysign(0.1, y2-y1)
+        print "kratky vektor"
+      if math.hypot(x3-x2,y3-y2)<0.1:
+        x3 = x3 + math.copysign(0.1, x3-x2)
+        y3 = y3 + math.copysign(0.1, y3-y2)
+        print "kratky vektor"
+      if math.hypot(x1-x3,y1-y3)<0.1:
+        x1 = x1 + math.copysign(0.1, x1-x3)
+        y1 = y1 + math.copysign(0.1, y1-y3)
+        print "kratky vektor"
+      poly=box2d.b2PolygonDef()
+      poly.setVertices(((x1, y1), (x2, y2), (x3, y3)))
+      poly.density = 1.0
+      poly.restitution = 0.0
+      poly.friction = 0.0
+      body.CreateShape(poly)
+      body.SetMassFromShapes()
+\end{lstlisting}
+
 \subsection{Tesselation}
 Box2D supports only collisions between convex objects. That is why we need to
-breake outlines to convex polygons. There is more ways how to break concave
-objects. We chose Seidel's Triangulation Algorithm implemented by poly2tri
-Python library
-%TODO asi iny algorytmus
-%TODO pridat referenciu na poly2tri
+break outlines to convex polygons. There is more ways how to break concave
+objects. We chose the 2D constrained Delaunay triangulation algorithm
+implemented by poly2tri Python library[\cite{Delauanay}].
 
 \subsection{Implementation}
 %TODO dat sem zdrojovy kod a popisat ho
 \section{Future work}
 Identifikacia objektov
-Sledovanie objektov a morfing
+Sledovanie objektov a morfing 
 Interakcia hybucich sa objektov zachytenych kamerov s Box2D reprezentaciou
 
 \section*{Acknowledgments}
 The work was supported by a grant (No. NIL-I-007-d) from Iceland, Liechtenstein 
 and Norway through the EEA Financial Mechanism and the Norwegian Financial 
 Mechanism. This project is also co-financed from the state budget of the Slovak
-Republic..
+Republic.
 
 %If you use BibTeX comment the second line, if not comment the first line
 \bibliography{pcbib}

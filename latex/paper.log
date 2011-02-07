@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.2.3)  6 FEB 2011 02:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  7 FEB 2011 15:31
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -359,6 +359,10 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
 (/usr/share/texmf-texlive/tex/latex/natbib/natbib.sty
 Package: natbib 2009/07/16 8.31 (PWD, AO)
 \bibhang=\skip46
@@ -411,23 +415,26 @@ Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
-) (./paper.aux)
+) (./paper.aux
+
+LaTeX Warning: Label `Objects' multiply defined.
+
+)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-
-(/usr/share/texmf/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+ (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count118
 \scratchdimen=\dimen128
@@ -441,35 +448,66 @@ LaTeX Font Info:    ... okay on input line 31.
 \everyMPtoPDFconversion=\toks23
 )
 \c@lstlisting=\count123
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 33.
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14> on input line 33.
+(Font)              <14> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.79996> on input line 33.
+(Font)              <9.79996> on input line 34.
 \c@sv@footnote=\count124
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./paper.bbl) [2]
-(./paper.aux) ) 
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+
+Package Listings Warning: Text dropped after begin of listing on input line 245
+.
+
+(./paper.bbl
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 20.
+ (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 5939) in paragraph at lines 16--22
+[][]\T1/cmr/m/n/10 Catto, E. (2010).  Box2D v2.0.1 User Man-ual.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--22
+\T1/cmtt/m/n/10 http : / / code . google . com / p / pybox2d / downloads /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--22
+\T1/cmtt/m/n/10 detail ? name = 2 . 0 . 2 % 20documentation % 20from %
+ []
+
+) [3] (./paper.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4139 strings out of 493848
- 49358 string characters out of 1152824
- 184145 words of memory out of 3000000
- 7394 multiletter control sequences out of 15000+50000
- 14105 words of font info for 41 fonts, out of 3000000 for 9000
+ 4296 strings out of 493848
+ 51718 string characters out of 1152822
+ 231230 words of memory out of 3000000
+ 7543 multiletter control sequences out of 15000+50000
+ 14418 words of font info for 42 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  30i,8n,40p,222b,1521s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
-x1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on paper.pdf (2 pages, 181535 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sftt1000.pfb>
+Output written on paper.pdf (3 pages, 229094 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
