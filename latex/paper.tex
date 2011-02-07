@@ -102,10 +102,10 @@ def DetectOutline(self, image):
 \end{lstlisting}
 In function in Listing \ref{Detect} is shown how to find outlines of objects in
 image. We convert image to gray scale as seen on line \ref{Detect:grayscale}.
-Then we run histogram equalization (line: \ref{Detect:equalize}).
+Then we run histogram equalization (line:~\ref{Detect:equalize}).
 Equalization makes objects better visible and gives better output for
-thresholding (line: \ref{Detect:threshold}) which makes black and white image
-prepared for outline detection (line: \ref{Detect:contours}).
+thresholding (line:~\ref{Detect:threshold}) which makes black and white image
+prepared for outline detection (line:~\ref{Detect:contours}).
 %TODO Doplnit obrazok s normalizaciou histogramu
 %TODO Doplnit obrazok s thresholdom
 After outline detection we have tree of contours stored in the variable
@@ -142,11 +142,11 @@ doSleep = True %\label{World:sleep})
 self.world = box2d.b2World(self.worldAABB, gravity, doSleep)
 \end{lstlisting}
 First we have to create boundaries of the world. We define them as vectors from
-bottom left (line: \ref{World:lower}) to top right (line:
+bottom left (line:~\ref{World:lower}) to top right (line:~
 \ref{World:upper}). Objects have to be inside the boundaries, when an object
-touch the boundary it gets stuck. Then we define gravity vector (line:
+touch the boundary it gets stuck. Then we define gravity vector (line:~
 \ref{World:gravity}). The last thing before creation of the world we allow
-objects to sleep(line: \ref{World:sleep}). Object that are not moving fall
+objects to sleep(line:~\ref{World:sleep}). Object that are not moving fall
 asleep, then are ignored by the engine. Last line of Listing \ref{World} creates
 the world.
 
@@ -164,7 +164,7 @@ referencing to another object contour. To iterate over all contours we have
 created recursive function shown in Listing: \ref{CreateObjects}.
 \begin{lstlisting}[label=CreateObjects,caption=Function to iterate through
 contour tree]
-def CreateObjectsFromCountours(self,cont,h=0,v=0):
+def CreateObjectsFromCountours(self, cont, h=0, v=0):
   if v>0:	%\label{CreateObjects:depth})
     density = 10.0 %\label{CreateObjects:density10})
   else:
@@ -182,10 +182,10 @@ def CreateObjectsFromCountours(self,cont,h=0,v=0):
     self.CreateObjectsFromCountours(cont.h_next(),h,v)
 \end{lstlisting}
 We iterate through contour tree. First level is outer contour of the image
-(Line: \ref{CreateObjects:depth}), because we do not want the outer contour to
-move, we set it as static byt setting density to 0 (Line:
+(line:~\ref{CreateObjects:depth}), because we do not want the outer contour to
+move, we set it as static byt setting density to 0 (line:~
 \ref{CreateObjects:density0}). Every other contour is dynamic body with density
-set to 10 (Line: \ref{CreateObjects:density10}).
+set to 10 (line:~\ref{CreateObjects:density10}).
 
 When we know what type of object we will create, we can create bodies and
 shapes for our contours.
@@ -197,8 +197,9 @@ have position and velocity. Forces, torques and impulses can be applied to body
 [\cite{Box2DManual}].  Bodies just hold the shapes. Shapes are elements that
 collide together.
 
-Listing \ref{Objects} shows how to create object from outer contour: 
-\begin{lstlisting}[name=Objects,label=Objects,caption=Creation of object from
+Listings \ref{Objects1},\ref{Objects2},\ref{Objects3} shows how to create object
+from outer contour:
+\begin{lstlisting}[name=Objects,label=Objects1,caption=Creation of object from
 outer contour]
 def CreateObject(self, cont, h,v):
   contM = []
@@ -224,13 +225,13 @@ def CreateObject(self, cont, h,v):
 Image size is measured in pixels and Box2D units are kilograms, meters,
 and seconds (KMS) we should scale images coordinates to fit in 0.1m to
 10m. In that scale is performance of Box2D the best. We are doing it by
-dividing of value of pixel coordinates by 30.0 (Line: \ref{Objects:scaling})
+dividing of value of pixel coordinates by 30.0 (line:~\ref{Objects:scaling})
 
-Then we create a body definition that will represent our contour(Line:
+Then we create a body definition that will represent our contour(line:~
 \ref{Objects:CreateBody}) and set up it initial possition in next line.
 
-After that we create shape of body as chain of edges (Line:
-\ref{Objects:CreateChain}) and assign the array of vertices to it (Line:
+After that we create shape of body as chain of edges (line:~
+\ref{Objects:CreateChain}) and assign the array of vertices to it (line:~
 \ref{Objects:AssignVertices}). Edges are special type of shapes that have no
 mass, is represented as line betven vertices that collide with other non-edge
 objects. Edges are easy to create because they do not have to be concave unlike
@@ -240,17 +241,30 @@ At last we attach this shape to created body \ref{Objects:AttachShape}. Because
 Box2D does not keep track about body definitions, we have to store bodies in to
 array for later use\ref{Objects:CountourBodies}.
 
-Listing of the function CreateObject() continous in Listing \ref{Objects}. This
-part of function creates dynamic objects inside the outer contour.
-\begin{lstlisting}[name=Objects,firstnumber=auto,label=Objects,caption=Creation of objecs] if v == 1: try:
+Listing of the function CreateObject() continous in Listing \ref{Objects2}. This
+part of function creates dynamic objects inside the outer contour. In this part
+we prepare list for bodies of objects, so we can modify objects that are already
+created or objects that we want append new shapes.
+\begin{lstlisting}[name=Objects,firstnumber=auto,label=Objects2,caption=Creation of objects] if v == 1:
+    try:
       body = self.objectBodies[h]
     except:
       body = self.world.CreateBody(bd)
       self.objectBodies[h] = body
+\end{lstlisting}
+\subsection{Tesselation}
+Box2D supports only collisions between convex objects and contours of objects
+captured by camera are not convex we have to break outlines to convex polygons.
+There is more ways how to break concave objects. We chose the 2D constrained
+Delaunay triangulation algorithm implemented by poly2tri Python
+library[\cite{Delauanay}]. Function CreateObject() continous in Listing~
+\ref{Objects3}
+\begin{lstlisting}[name=Objects,firstnumber=auto,label=Objects3,caption=Creation
+ of objects]
     polyline = []
     for (x,y) in cont:
-      polyline.append(p2t.Point(x,y))
-    cdt = p2t.CDT(polyline)
+      polyline.append(p2t.Point(x,y)) %\label{Objects:polyline})
+    cdt = p2t.CDT(polyline) %\label{Objects:p2t})
     triangles = cdt.triangulate()
     for t in triangles:
       x1 = t.a.x/30.0
@@ -259,32 +273,30 @@ part of function creates dynamic objects inside the outer contour.
       y2 = t.b.y/30.0
       x3 = t.c.x/30.0
       y3 = t.c.y/30.0
-      if math.hypot(x2-x1,y2-y1)<0.1:
+      if math.hypot(x2-x1,y2-y1)<0.1: %\label{Objects:minSize1})
         x2 = x2 + math.copysign(0.1, x2-x1)
         y2 = y2 + math.copysign(0.1, y2-y1)
-        print "kratky vektor"
       if math.hypot(x3-x2,y3-y2)<0.1:
         x3 = x3 + math.copysign(0.1, x3-x2)
         y3 = y3 + math.copysign(0.1, y3-y2)
-        print "kratky vektor"
       if math.hypot(x1-x3,y1-y3)<0.1:
         x1 = x1 + math.copysign(0.1, x1-x3)
-        y1 = y1 + math.copysign(0.1, y1-y3)
-        print "kratky vektor"
-      poly=box2d.b2PolygonDef()
+        y1 = y1 + math.copysign(0.1, y1-y3) %\label{Objects:minSize2})
+      poly=box2d.b2PolygonDef()  %\label{Objects:polygondef})
       poly.setVertices(((x1, y1), (x2, y2), (x3, y3)))
       poly.density = 1.0
       poly.restitution = 0.0
       poly.friction = 0.0
-      body.CreateShape(poly)
-      body.SetMassFromShapes()
+      body.CreateShape(poly)  %\label{Objects:createshape})
+      body.SetMassFromShapes() %\label{Objects:setMass})
 \end{lstlisting}
-
-\subsection{Tesselation}
-Box2D supports only collisions between convex objects. That is why we need to
-break outlines to convex polygons. There is more ways how to break concave
-objects. We chose the 2D constrained Delaunay triangulation algorithm
-implemented by poly2tri Python library[\cite{Delauanay}].
+Objects:polyline
+Objects:p2t
+Objects:minSize1
+Objects:minSize2
+Objects:polygondef
+Objects:createshape
+Objects:setMass
 
 \subsection{Implementation}
 %TODO dat sem zdrojovy kod a popisat ho
@@ -304,6 +316,3 @@ Republic.
 %\input{paper.bbl}
 
 \end{document}
-
-
-
