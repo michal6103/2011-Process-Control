@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
+\usepackage{graphicx}
 \usepackage{natbib}
 
 \bibpunct{(}{)}{;}{a}{,}{}
@@ -31,7 +32,8 @@ escapeinside={\%}{)}
 
 \begin{document}
 \begin{frontmatter}
-\title{Simulation of 2D physics of hand drawn objects using OpenCV and Box2D}
+\title{Simulation of 2D physics of objects captured by web camera using OpenCV
+and Box2D}
 \author[Bratislava]{Michal Sedlák}
 \address[Bratislava]{Faculty of Electrical Engineering and Information
 Technology, Slovak University of Technology, Ilkovičova 3, 812 19 Bratislava,
@@ -78,7 +80,16 @@ self.DetectOutline(self.image)
 In line \ref{Capture:init} of listing \ref{Capture} we initialize our web
 camera. In variable camera is allocated and initialized object that can query
 camera for new image. Then as we see in \ref{Capture:query} we can get the
-image from camera and store it in the variable named image. Now when we have
+image from camera and store it in the variable named image. Capured image
+is shown in Figure \ref{fig:captured}.
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/1test.png}
+\caption{Image captured form camera}
+\label{fig:captured}
+\end{figure}
+
+Now when we have
 image data stored in the variable, we can process data to find outlines.
 \begin{lstlisting}[caption=Outline detection, label=Detect]
 def DetectOutline(self, image):
@@ -102,12 +113,24 @@ def DetectOutline(self, image):
 \end{lstlisting}
 In function in Listing \ref{Detect} is shown how to find outlines of objects in
 image. We convert image to gray scale as seen on line \ref{Detect:grayscale}.
-Then we run histogram equalization (line:~\ref{Detect:equalize}).
-Equalization makes objects better visible and gives better output for
-thresholding (line:~\ref{Detect:threshold}) which makes black and white image
-prepared for outline detection (line:~\ref{Detect:contours}).
-%TODO Doplnit obrazok s normalizaciou histogramu
-%TODO Doplnit obrazok s thresholdom
+
+Then we run histogram equalization (line:~\ref{Detect:equalize}). Equalization
+makes objects better visible and gives better output for thresholding
+(line:~\ref{Detect:threshold}) which makes black and with image prepared for outline detection (line:~\ref{Detect:contours}). Output
+of thresholding is shown in (Figure \ref{fig:threshold}).
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/3test-equalize-histogram.png}
+\caption{Image after histogram equalization}
+\label{fig:histogram}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/4test-threshold.png}
+\caption{Image after thresholding}
+\label{fig:threshold}
+\end{figure}
+
 After outline detection we have tree of contours stored in the variable
 self.contours. These trees are iterable objects sorted from outer to inner
 outline connected by property h\_next and v\_next that we will describe in
@@ -116,11 +139,17 @@ paragraph about creation of objects from outlines.
 Contour can be very complicated and consist of thousands of points, which could
 cause too complicated objects. It is time demanding to simulate complicated
 objects, that is why we use polynomial approximation of the contour points.
-(line:~\ref{Detect:approx}).
+(line:~\ref{Detect:approx}). Visualusation of outlines is shown in Figure:
+\ref{fig:contours}.
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/5test-contours.png}
+\caption{Visualisation of contours}
+\label{fig:contours}
+\end{figure}
 
 Now we have all outlines stored in the outline tree structure, so we can create
 objects and apply a physics.
-%TODO Doplnit obrazok so zvyraznenymi outlineami
 
 \section{Physics simulation in Box2D}
 There is lot of physics engines that can be used for simulation of physics.
@@ -266,13 +295,13 @@ library[\cite{Delauanay}]. Function CreateObject() continous in Listing~
       polyline.append(p2t.Point(x,y)) %\label{Objects:polyline})
     cdt = p2t.CDT(polyline) %\label{Objects:p2t})
     triangles = cdt.triangulate()
-    for t in triangles:
+    for t in triangles:  %\label{Objects:scale1})
       x1 = t.a.x/30.0
       y1 = t.a.y/30.0
       x2 = t.b.x/30.0
       y2 = t.b.y/30.0
       x3 = t.c.x/30.0
-      y3 = t.c.y/30.0
+      y3 = t.c.y/30.0  %\label{Objects:scale2})
       if math.hypot(x2-x1,y2-y1)<0.1: %\label{Objects:minSize1})
         x2 = x2 + math.copysign(0.1, x2-x1)
         y2 = y2 + math.copysign(0.1, y2-y1)
@@ -290,16 +319,39 @@ library[\cite{Delauanay}]. Function CreateObject() continous in Listing~
       body.CreateShape(poly)  %\label{Objects:createshape})
       body.SetMassFromShapes() %\label{Objects:setMass})
 \end{lstlisting}
-Objects:polyline
-Objects:p2t
-Objects:minSize1
-Objects:minSize2
-Objects:polygondef
-Objects:createshape
-Objects:setMass
+The creation of objects continues with tesselation. We need to assigne vertices
+to structure that could be understood by poly2tri library
+(line:~\ref{Objects:polyline}) and we initialize the CDT object
+(line:~\ref{Objects:p2t}). In next line we call function that will create
+triangles from the verteces assigned before. These triangles are in image pixel
+coordinates, so we need to scale them at first
+(lines:~\ref{Objects:scale1}-\ref{Objects:scale2}). Now when we have triangles
+scaled we need to scale the triangles that are too small to triangles with size
+at least 0.1m because of speed optimalization, this is done in
+lines:~\ref{Objects:minSize1}-\ref{Objects:minSize2}). Now we have set of
+tirangular shapes that could be attached to body
+(line:~\ref{Objects:createshape:}). Because these objects are compound objects,
+we need to set the mass center and ammount to this body. We can let Box2D set
+this properties based on shape information with body function
+SetMassFromShapes() (line:~\ref{Objects:setMass}). Visualisation of objects is
+in Figure ref{fig:objects}
 
-\subsection{Implementation}
-%TODO dat sem zdrojovy kod a popisat ho
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/6dynamic-objets.png}
+\caption{Visualisation of objects after triangulation}
+\label{fig:objects}
+\end{figure}
+
+After this we can add other objects and start simulation by function Step().
+After few second of simulation are all objects on the bottom of the screen like
+in Figure \ref{fig:simulation}.
+
+\begin{figure}[h]
+\includegraphics[width=\columnwidth]{images/7dynamic-objets-simulation.png}
+\caption{Visualisation of simulation}
+\label{fig:simulation}
+\end{figure}
+
 \section{Future work}
 Identifikacia objektov
 Sledovanie objektov a morfing 
