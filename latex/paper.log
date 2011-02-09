@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  8 FEB 2011 17:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  9 FEB 2011 16:31
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -403,26 +403,86 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count110
-\lst@gtempboxa=\box31
-\lst@token=\toks21
-\lst@length=\count111
-\lst@currlwidth=\dimen126
-\lst@column=\count112
-\lst@pos=\count113
-\lst@lostspace=\dimen127
-\lst@width=\dimen128
-\lst@newlines=\count114
-\lst@lineno=\count115
+(/usr/share/texmf-texlive/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+
+Package subfig Warning: Your document class has a bad definition
+ of \endfigure, most likely
+ \let\endfigure=\end@float
+ which has now been changed to
+ \def\endfigure{\end@float}
+ because otherwise subsequent changes to \end@float
+ (like done by several packages changing float behaviour)
+ can't take effect on \endfigure.
+ Please complain to your document class author.
+
+
+Package subfig Warning: Your document class has a bad definition
+ of \endtable, most likely
+ \let\endtable=\end@float
+ which has now been changed to
+ \def\endtable{\end@float}
+ because otherwise subsequent changes to \end@float
+ (like done by several packages changing float behaviour)
+ can't take effect on \endtable.
+ Please complain to your document class author.
+
+(/usr/share/texmf-texlive/tex/latex/caption/caption.sty
+Package: caption 2009/10/09 v3.1k Customizing captions (AR)
+
+(/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
+Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
+\captionmargin=\dimen126
+\captionmargin@=\dimen127
+\captionwidth=\dimen128
+\caption@indent=\dimen129
+\caption@parindent=\dimen130
+\caption@hangindent=\dimen131
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
-\lst@maxwidth=\dimen129
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used on input line 1068.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = macro:->\@makefigurecaption .
+\c@ContinuedFloat=\count110
+)
+\c@KVtest=\count111
+\sf@farskip=\skip50
+\sf@captopadj=\dimen132
+\sf@capskip=\skip51
+\sf@nearskip=\skip52
+\c@subfigure=\count112
+\c@subfigure@save=\count113
+\c@lofdepth=\count114
+\c@subtable=\count115
+\c@subtable@save=\count116
+\c@lotdepth=\count117
+\sf@top=\skip53
+\sf@bottom=\skip54
+) (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count118
+\lst@gtempboxa=\box31
+\lst@token=\toks21
+\lst@length=\count119
+\lst@currlwidth=\dimen133
+\lst@column=\count120
+\lst@pos=\count121
+\lst@lostspace=\dimen134
+\lst@width=\dimen135
+\lst@newlines=\count122
+\lst@lineno=\count123
+\lst@maxwidth=\dimen136
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count116
-\lst@skipnumbers=\count117
+\c@lstnumber=\count124
+\lst@skipnumbers=\count125
 \lst@framebox=\box32
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
@@ -435,49 +495,47 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
 
 (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count118
-\scratchdimen=\dimen130
+\scratchcounter=\count126
+\scratchdimen=\dimen137
 \scratchbox=\box33
-\nofMPsegments=\count119
-\nofMParguments=\count120
+\nofMPsegments=\count127
+\nofMParguments=\count128
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count121
-\MPscratchDim=\dimen131
-\MPnumerator=\count122
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen138
+\MPnumerator=\count130
 \everyMPtoPDFconversion=\toks23
 )
-\c@lstlisting=\count123
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 36.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 59.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count131
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 62.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14> on input line 36.
+(Font)              <14> on input line 62.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.79996> on input line 36.
-\c@sv@footnote=\count124
+(Font)              <9.79996> on input line 62.
+\c@sv@footnote=\count132
  <images/1test.png, id=1, 361.35pt x 297.11pt>
 File: images/1test.png Graphic file (type png)
- <use images/1test.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ <use images/1test.png> [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./images/1test.png (PNG copy)>]
 <images/3test-equalize-histogram.png, id=15, 361.35pt x 297.11pt>
@@ -488,38 +546,35 @@ File: images/3test-equalize-histogram.png Graphic file (type png)
 File: images/4test-threshold.png Graphic file (type png)
 
 <use images/4test-threshold.png>
+Overfull \hbox (3.25565pt too wide) in paragraph at lines 160--165
+ [][][] 
+ []
+
 <images/5test-contours.png, id=17, 361.35pt x 297.11pt>
 File: images/5test-contours.png Graphic file (type png)
 
-<use images/5test-contours.png>
+<use images/5test-contours.png> [2 <./images/3test-equalize-histogram.png (PNG 
+copy)> <./images/4test-threshold.png (PNG copy)> <./images/5test-contours.png (
+PNG copy)>]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./images/3test-equalize-histogram.png (PNG copy)> <./images/4test-threshold
-.png (PNG copy)> <./images/5test-contours.png (PNG copy)>]
-
-Package Listings Warning: Text dropped after begin of listing on input line 277
+Package Listings Warning: Text dropped after begin of listing on input line 313
 .
 
-[3]
 
-LaTeX Warning: Reference `Objects:createshape:' on page 4 undefined on input li
-ne 333.
+LaTeX Warning: Reference `Objects:createshape:' on page 3 undefined on input li
+ne 369.
 
-<images/6dynamic-objets.png, id=24, 803.0pt x 602.25pt>
+[3] <images/6dynamic-objets.png, id=24, 616.3025pt x 506.89375pt>
 File: images/6dynamic-objets.png Graphic file (type png)
 
 <use images/6dynamic-objets.png>
-<images/7dynamic-objets-simulation.png, id=26, 803.0pt x 602.25pt>
+<images/7dynamic-objets-simulation.png, id=26, 615.29875pt x 507.8975pt>
 File: images/7dynamic-objets-simulation.png Graphic file (type png)
 
-<use images/7dynamic-objets-simulation.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(./paper.bbl
+<use images/7dynamic-objets-simulation.png> (./paper.bbl
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 20.
- (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+
+(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 Underfull \hbox (badness 5939) in paragraph at lines 16--22
@@ -543,13 +598,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4500 strings out of 493848
- 54936 string characters out of 1152822
- 248295 words of memory out of 3000000
- 7728 multiletter control sequences out of 15000+50000
+ 5582 strings out of 493848
+ 74002 string characters out of 1152822
+ 309842 words of memory out of 3000000
+ 8800 multiletter control sequences out of 15000+50000
  14418 words of font info for 42 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 30i,9n,40p,222b,1628s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,45p,222b,1705s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-su
@@ -559,7 +614,7 @@ sr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts
 er/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sftt1000.pfb>
-Output written on paper.pdf (4 pages, 655702 bytes).
+Output written on paper.pdf (4 pages, 647592 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

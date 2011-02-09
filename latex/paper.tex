@@ -5,23 +5,29 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{natbib}
-
+ 
 \bibpunct{(}{)}{;}{a}{,}{}
 
 \usepackage{color}
+\usepackage{subfig}
+
+%nastavenie vypisov kodu
 \usepackage{listings}
-\lstset{ %
+\usepackage{caption}
+
+\captionsetup[lstlisting]{singlelinecheck=false}
+
+\lstnewenvironment{code}[1][]%
+  {\minipage{\columnwidth} 
+   \lstset{
 language=Python, 
 basicstyle=\footnotesize,
 numbers=left,
 numberstyle=\tiny,
-xleftmargin= 10pt,
+xleftmargin= 12pt,
+abovecaptionskip=10pt,
 stepnumber=1,
 numbersep=5pt,
-backgroundcolor=\color{white}, 
-showspaces=false,
-showstringspaces=false,
-showtabs=false,
 frame=none,
 tabsize=2,
 captionpos=b,
@@ -29,6 +35,26 @@ breaklines=true,
 breakatwhitespace=false,
 escapeinside={\%}{)}
 }
+}
+  {\endminipage}
+
+\lstset{
+language=Python, 
+basicstyle=\footnotesize,
+numbers=left,
+numberstyle=\tiny,
+xleftmargin= 12pt,
+abovecaptionskip=10pt,
+stepnumber=1,
+numbersep=5pt,
+frame=none,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+breakatwhitespace=false,
+escapeinside={\%}{)}
+}
+
 
 \begin{document}
 \begin{frontmatter}
@@ -41,11 +67,15 @@ Slovakia
 \\
 (e-mail: michal.sedlak@stuba.sk)}
 \begin{abstract}
-%TODO Napisat abstrakt
-
+The paper presents one approach to simulation of physics applied on objects
+captured by web camera. Introduced approach utilise OpenCV library for image
+capturing and contour detection. Objects detected by OpenCV are reconstructed
+from its outlines in Box2D environment so the physics can be applied to it.
+Because of restrictions of Box2D we needed to do approximation and scaling of
+outlines and tessellation of objects with Delaunay triangulation algorithm.
 \end{abstract}
 \begin{keyword}
-Maximum 5 keywords.
+OpenCV, Python, Box2D, physics, tessellation
 \end{keyword}
 \end{frontmatter}
 
@@ -71,26 +101,27 @@ programming functions for real time computer vision, with more than five hundred
 optimized algorithms. It can be used with C++, C and Python. We chose Python for
 implementation in our application.
 
-Simple image capture is shown in Listing \ref{Capture}.
+Simple image capture is shown in Listing~\ref{Capture}.
 \begin{lstlisting}[caption=Query image frame from web camera, label=Capture]
 self.camera = cv.CaptureFromCAM(-1) %\label{Capture:init})
 self.image = cv.QueryFrame(self.camera) %\label{Capture:query})
 self.DetectOutline(self.image)
 \end{lstlisting}
-In line \ref{Capture:init} of listing \ref{Capture} we initialize our web
+In line \ref{Capture:init} of Listing~\ref{Capture} we initialize our web
 camera. In variable camera is allocated and initialized object that can query
 camera for new image. Then as we see in \ref{Capture:query} we can get the
-image from camera and store it in the variable named image. Capured image
+image from camera and store it in the variable named image. Captured image
 is shown in Figure \ref{fig:captured}.
-
 \begin{figure}[h]
-\includegraphics[width=\columnwidth]{images/1test.png}
+\center
+\includegraphics[width=0.8\columnwidth]{images/1test.png}
 \caption{Image captured form camera}
 \label{fig:captured}
 \end{figure}
 
-Now when we have
-image data stored in the variable, we can process data to find outlines.
+Now when we have image data stored in the variable, we can process data to find
+outlines.
+
 \begin{lstlisting}[caption=Outline detection, label=Detect]
 def DetectOutline(self, image):
   image_size = cv.GetSize(image)
@@ -111,24 +142,28 @@ def DetectOutline(self, image):
       1)
   return self.contours
 \end{lstlisting}
-In function in Listing \ref{Detect} is shown how to find outlines of objects in
-image. We convert image to gray scale as seen on line \ref{Detect:grayscale}.
+
+In function in Listing~\ref{Detect} is shown how to find outlines of objects in
+image. We convert image to grey scale as seen on line \ref{Detect:grayscale}.
 
 Then we run histogram equalization (line:~\ref{Detect:equalize}). Equalization
 makes objects better visible and gives better output for thresholding
-(line:~\ref{Detect:threshold}) which makes black and with image prepared for outline detection (line:~\ref{Detect:contours}). Output
-of thresholding is shown in (Figure \ref{fig:threshold}).
+(line:~\ref{Detect:threshold}) which makes black and with image prepared for
+outline detection (line:~\ref{Detect:contours}). Output of thresholding is
+shown in (Figure \ref{fig:threshold}).
 
 \begin{figure}[h]
-\includegraphics[width=\columnwidth]{images/3test-equalize-histogram.png}
-\caption{Image after histogram equalization}
-\label{fig:histogram}
-\end{figure}
-
-\begin{figure}[h]
-\includegraphics[width=\columnwidth]{images/4test-threshold.png}
-\caption{Image after thresholding}
-\label{fig:threshold}
+  \center
+  \subfloat[Equalize histogram]{
+    \label{fig:histogram}
+    \includegraphics[width=0.48\columnwidth]{images/3test-equalize-histogram.png}
+  }
+  \subfloat[Thresholding]{
+    \label{fig:threshold}
+    \includegraphics[width=0.48\columnwidth]{images/4test-threshold.png}
+   }
+\caption{Effects applied on images}
+\label{fig:operations}
 \end{figure}
 
 After outline detection we have tree of contours stored in the variable
@@ -139,11 +174,12 @@ paragraph about creation of objects from outlines.
 Contour can be very complicated and consist of thousands of points, which could
 cause too complicated objects. It is time demanding to simulate complicated
 objects, that is why we use polynomial approximation of the contour points.
-(line:~\ref{Detect:approx}). Visualusation of outlines is shown in Figure:
+(line:~\ref{Detect:approx}). Visualisation of outlines is shown in Figure:
 \ref{fig:contours}.
 
 \begin{figure}[h]
-\includegraphics[width=\columnwidth]{images/5test-contours.png}
+\center
+\includegraphics[width=0.8\columnwidth]{images/5test-contours.png}
 \caption{Visualisation of contours}
 \label{fig:contours}
 \end{figure}
@@ -155,7 +191,7 @@ objects and apply a physics.
 There is lot of physics engines that can be used for simulation of physics.
 Because we wanted to simulate physics only in 2D we could, code our own
 implementation of physics, or use one of commercial or open source engines. We
-chose Box2D[\cite{GameEngines}], which is open source 2D physiscs engine with
+chose Box2D[\cite{GameEngines}], which is open source 2D physics engine with
 possibility to simulate rigid body objects and their collisions.
 \subsection{World}
 To create physics simulation we need to create world. World is object that
@@ -176,7 +212,7 @@ bottom left (line:~\ref{World:lower}) to top right (line:~
 touch the boundary it gets stuck. Then we define gravity vector (line:~
 \ref{World:gravity}). The last thing before creation of the world we allow
 objects to sleep(line:~\ref{World:sleep}). Object that are not moving fall
-asleep, then are ignored by the engine. Last line of Listing \ref{World} creates
+asleep, then are ignored by the engine. Last line of Listing~\ref{World} creates
 the world.
 
 World is created and we are ready to create objects from outlines.
@@ -185,7 +221,7 @@ Every object that is simulated in Box2D consists of body and shapes. Our objects
 are described by the contour tree. To create objects we need to iterate contour
 tree, find contours that belongs to together and create objects for these
 contours.
-\subsubsection{Contour tree}
+\subsection{Contour tree}
 Contour tree is object in which are stored points of each contour. Contours are
 connected by functions returning reference to other contours with h\_next() and
 v\_next(). h\_next() is referencing to deeper contour, and v\_next is
@@ -212,13 +248,13 @@ def CreateObjectsFromCountours(self, cont, h=0, v=0):
 \end{lstlisting}
 We iterate through contour tree. First level is outer contour of the image
 (line:~\ref{CreateObjects:depth}), because we do not want the outer contour to
-move, we set it as static byt setting density to 0 (line:~
+move, we set it as static by setting density to 0 (line:~
 \ref{CreateObjects:density0}). Every other contour is dynamic body with density
 set to 10 (line:~\ref{CreateObjects:density10}).
 
 When we know what type of object we will create, we can create bodies and
 shapes for our contours.
-\subsubsection{Bodies, shapes and collisions}
+\subsection{Bodies, shapes and collisions}
 Bodies are backbone used by shapes. One body can contain more shapes, but one
 shape could be attached to only one body. Box2d is rigid body physics engine,
 that mean that shapes attached to body can not move against other, or body. Body
@@ -257,20 +293,20 @@ and seconds (KMS) we should scale images coordinates to fit in 0.1m to
 dividing of value of pixel coordinates by 30.0 (line:~\ref{Objects:scaling})
 
 Then we create a body definition that will represent our contour(line:~
-\ref{Objects:CreateBody}) and set up it initial possition in next line.
+\ref{Objects:CreateBody}) and set up it initial position in next line.
 
 After that we create shape of body as chain of edges (line:~
 \ref{Objects:CreateChain}) and assign the array of vertices to it (line:~
 \ref{Objects:AssignVertices}). Edges are special type of shapes that have no
-mass, is represented as line betven vertices that collide with other non-edge
+mass, is represented as line between vertices that collide with other non-edge
 objects. Edges are easy to create because they do not have to be concave unlike
 polygons.
 
 At last we attach this shape to created body \ref{Objects:AttachShape}. Because
 Box2D does not keep track about body definitions, we have to store bodies in to
-array for later use\ref{Objects:CountourBodies}.
+array for later use (line: \ref{Objects:CountourBodies}).
 
-Listing of the function CreateObject() continous in Listing \ref{Objects2}. This
+Listing of the function CreateObject() continuous in Listing~\ref{Objects2}. This
 part of function creates dynamic objects inside the outer contour. In this part
 we prepare list for bodies of objects, so we can modify objects that are already
 created or objects that we want append new shapes.
@@ -281,12 +317,12 @@ created or objects that we want append new shapes.
       body = self.world.CreateBody(bd)
       self.objectBodies[h] = body
 \end{lstlisting}
-\subsection{Tesselation}
+\subsection{tessellation}
 Box2D supports only collisions between convex objects and contours of objects
 captured by camera are not convex we have to break outlines to convex polygons.
 There is more ways how to break concave objects. We chose the 2D constrained
 Delaunay triangulation algorithm implemented by poly2tri Python
-library[\cite{Delauanay}]. Function CreateObject() continous in Listing~
+library[\cite{Delauanay}]. Function CreateObject() continuous in Listing~
 \ref{Objects3}
 \begin{lstlisting}[name=Objects,firstnumber=auto,label=Objects3,caption=Creation
  of objects]
@@ -319,22 +355,22 @@ library[\cite{Delauanay}]. Function CreateObject() continous in Listing~
       body.CreateShape(poly)  %\label{Objects:createshape})
       body.SetMassFromShapes() %\label{Objects:setMass})
 \end{lstlisting}
-The creation of objects continues with tesselation. We need to assigne vertices
+The creation of objects continues with tessellation. We need to assign vertices
 to structure that could be understood by poly2tri library
 (line:~\ref{Objects:polyline}) and we initialize the CDT object
 (line:~\ref{Objects:p2t}). In next line we call function that will create
-triangles from the verteces assigned before. These triangles are in image pixel
+triangles from the vertices assigned before. These triangles are in image pixel
 coordinates, so we need to scale them at first
 (lines:~\ref{Objects:scale1}-\ref{Objects:scale2}). Now when we have triangles
 scaled we need to scale the triangles that are too small to triangles with size
 at least 0.1m because of speed optimalization, this is done in
 lines:~\ref{Objects:minSize1}-\ref{Objects:minSize2}). Now we have set of
-tirangular shapes that could be attached to body
+triangular shapes that could be attached to body
 (line:~\ref{Objects:createshape:}). Because these objects are compound objects,
-we need to set the mass center and ammount to this body. We can let Box2D set
+we need to set the center of mass and amount to this body. We can let Box2D set
 this properties based on shape information with body function
 SetMassFromShapes() (line:~\ref{Objects:setMass}). Visualisation of objects is
-in Figure ref{fig:objects}
+in Figure \ref{fig:objects}.
 
 \begin{figure}[h]
 \includegraphics[width=\columnwidth]{images/6dynamic-objets.png}
@@ -342,9 +378,9 @@ in Figure ref{fig:objects}
 \label{fig:objects}
 \end{figure}
 
-After this we can add other objects and start simulation by function Step().
+After this we can add other objects and start simulation by function \lstinline{Step()}.
 After few second of simulation are all objects on the bottom of the screen like
-in Figure \ref{fig:simulation}.
+is shown in figure \ref{fig:simulation}.
 
 \begin{figure}[h]
 \includegraphics[width=\columnwidth]{images/7dynamic-objets-simulation.png}
@@ -353,9 +389,18 @@ in Figure \ref{fig:simulation}.
 \end{figure}
 
 \section{Future work}
-Identifikacia objektov
-Sledovanie objektov a morfing 
-Interakcia hybucich sa objektov zachytenych kamerov s Box2D reprezentaciou
+This approach can be used in interactive blackboards used for education of
+physics on elementary schools, in future work we plan to implement
+identification of some special objects like springs or joints.
+
+We are planning to implement object tracking, and dynamic object morphing so we
+could interact with simulated objects. Because of Box2D is rigid body engine,
+is complicated to simulate physics of objects that change their shape in time.
+We plan to implement some soft body elements to make this possible.
+
+The last stage will be usage of captured images as source of textures of
+simulated objects. Because this is only decorative element, we are planning to
+implement this task as a last one.
 
 \section*{Acknowledgments}
 The work was supported by a grant (No. NIL-I-007-d) from Iceland, Liechtenstein 
