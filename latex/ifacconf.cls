@@ -16,7 +16,7 @@
 %% For distribution of the original source see the terms
 %% for copying and modification in the file pergamon.dtx.
 %% 
-\def\filedate{2008/04/14}
+\def\filedate{2007/05/31}
 \def\fileversion{3.2ModD}
 \def\@journal{IFAC conferences}
 \def\@shortjnl{ifacconf}
@@ -179,13 +179,13 @@
 \newdimen\@bls                              % Several dimensions are
 \@bls=\baselineskip                         % expressed in terms of this.
 %\if@twoside
-%   \oddsidemargin    \z@		% Commented out 2007-05-30 PMISRA
-%   \evensidemargin   \z@		% Commented out 2007-05-30 PMISRA
-%   \marginparwidth  10\p@		% Commented out 2007-05-30 PMISRA
-%\else					% Commented out 2007-05-30 PMISRA
-%   \oddsidemargin    \z@		% Commented out 2007-05-30 PMISRA
-%   \evensidemargin   \z@		% Commented out 2007-05-30 PMISRA
-%   \marginparwidth   2pc		% Commented out 2007-05-30 PMISRA
+%   \oddsidemargin    \z@   % Commented out 2007-05-30 PMISRA
+%   \evensidemargin   \z@   % Commented out 2007-05-30 PMISRA
+%   \marginparwidth  10\p@    % Commented out 2007-05-30 PMISRA
+%\else          % Commented out 2007-05-30 PMISRA
+%   \oddsidemargin    \z@   % Commented out 2007-05-30 PMISRA
+%   \evensidemargin   \z@   % Commented out 2007-05-30 PMISRA
+%   \marginparwidth   2pc   % Commented out 2007-05-30 PMISRA
 %\fi
 
 \if@twoside                 % Values for two-sided printing:             % Added
@@ -198,13 +198,13 @@
    \marginparwidth  1pc
 \fi
 
-\marginparsep 10\p@		% Horizontal space between outer margin and WAS 20 PMISRA
-				% marginal note
-\topmargin 2mm			%    Nominal distance from top of page to top of
-				%    box containing running head.
-\headheight 10\p@		%
+\marginparsep 10\p@   % Horizontal space between outer margin and WAS 20 PMISRA
+        % marginal note
+\topmargin 2mm      %    Nominal distance from top of page to top of
+        %    box containing running head.
+\headheight 10\p@   %
  \headsep    20\p@  %
- \footskip 10\p@		% Changed to 10 from 23 PMISRA 2007-05-30
+ \footskip 10\p@    % Changed to 10 from 23 PMISRA 2007-05-30
 \bigskipamount=\@bls \@plus 0.3\@bls \@minus 0.3\@bls % 1/1 line
 \medskipamount=0.5\bigskipamount                  % 1/2 line
 \smallskipamount=0.25\bigskipamount               % 1/4 line
@@ -255,11 +255,11 @@
 \def\partmark#1{}
 \def\section{\@startsection{section}{1}{\z@}{0.5\@bls
    \@plus .2\@bls \@minus .1\@bls}{0.5\@bls}{\normalsize\bfseries
- \boldmath}}								% WAS 1.8\@bls PMISRA 2007-05-30
+ \boldmath}}                % WAS 1.8\@bls PMISRA 2007-05-30
 \def\subsection{\@startsection{subsection}{2}{\z@}{0.3\@bls
-  \@plus .2\@bls \@minus .1\@bls}{0.3\@bls}{\normalsize\itshape}}		% WAS \@bls and .3\@bls PMISRA 2007-05-30
+  \@plus .2\@bls \@minus .1\@bls}{0.3\@bls}{\normalsize\itshape}}   % WAS \@bls and .3\@bls PMISRA 2007-05-30
 \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.3\@bls
-  \@plus .1\@bls}{0.0001pt}{\normalsize\itshape}}			% WAS \@bls PMISRA 2007-05-30 
+  \@plus .1\@bls}{0.0001pt}{\normalsize\itshape}}     % WAS \@bls PMISRA 2007-05-30 
 \def\paragraph{\@startsection{paragraph}{4}{\z@}{3.25ex \@plus
   2ex \@minus 0.2ex}{-1em}{\normalfont\normalsize\itshape}}
 \def\subparagraph{\@startsection{subparagraph}{5}{1em}{3.25ex \@plus
@@ -1615,7 +1615,7 @@ et\or eu\or ew\or ex\or ey\or ez\else\@ctrerr\fi}
 \def\@articletypesize{\normalsize}
 \def\@historysize{\normalsize}
 \def\@keywordsize{\normalsize}
-\def\@keywordheading{{\itshape Keywords: }}
+\def\@keywordheading{Keywords: }
 \def\abstractname{{\bfseries {Abstract: }}}  % Abstract Bold PMISRA 2007-05-30
 \def\@bibliosize{\normalsize}
 \historyprefix{(\bgroup \itshape}
@@ -1624,19 +1624,19 @@ et\or eu\or ew\or ex\or ey\or ez\else\@ctrerr\fi}
 \def\@addressstyle{\normalsize\itshape}
 \def\@authorsize{\normalsize}
 \def\author@font{\upshape\bfseries}
-\def\@overtitleskip{0in}	% WAS 1IN PMISRA
+\def\@overtitleskip{0in}  % WAS 1IN PMISRA
 % SP 2001/08/07 new value: 4\@bls - 10\p@ + 4\p@
 \def\@belowfmskip{12\p@}   %WAS 42 PMISRA 2007-05-30
 % SP 2001/08/07 new value: 1\@bls - 10\p@ + 4\p@
 \def\@overkeywordskip{6pt}
 \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.3\@bls
-  \@plus .2\@bls}{-1em}{\normalsize\itshape}}	% WAS \@bls PMISRA 2007-05-30
+  \@plus .2\@bls}{-1em}{\normalsize\itshape}} % WAS \@bls PMISRA 2007-05-30
 \def\section{\@startsection{section}{1}{\z@}
- {6\p@ \@plus 0.5\@bls \@minus 4\p@}		% WAS 18 PMISRA 2007-05-30
+ {6\p@ \@plus 0.5\@bls \@minus 4\p@}    % WAS 18 PMISRA 2007-05-30
  {6\p@ \@plus 1\p@ \@minus 2\p@}
  {\centering}}
 \def\subsection{\@startsection{subsection}{2}{\z@}
- {6\p@ \@plus 0.5\@bls \@minus 4\p@}		% WAS 18 PMISRA 2007-05-30
+ {6\p@ \@plus 0.5\@bls \@minus 4\p@}    % WAS 18 PMISRA 2007-05-30
  {6\p@ \@plus 1\p@ \@minus 2\p@}
  {\itshape}}
 \parindent0em
@@ -1656,7 +1656,7 @@ et\or eu\or ew\or ex\or ey\or ez\else\@ctrerr\fi}
 \def\@price{09.50  $+$ 0.00}
 \def\footnoterule{\kern-3\p@
   \hrule \@width 2in
-  \kern 3\p@}			% WAS 12 PMISRA 2007-05-30
+  \kern 3\p@}     % WAS 12 PMISRA 2007-05-30
 \let\oldaddress@fmt\address@fmt
 \def\address@fmt#1#2#3#4{%
 \bgroup
@@ -1687,8 +1687,7 @@ et\or eu\or ew\or ex\or ey\or ez\else\@ctrerr\fi}
 \AtBeginDocument{%
 \@ifpackageloaded{harvard}{}{
   \RequirePackage{natbib}
-  %\bibliographystyle{plainnat}
-  \bibliographystyle{ifacconf}
+  \bibliographystyle{plainnat}
 }}
 \@bsphack
 \AtEndDocument

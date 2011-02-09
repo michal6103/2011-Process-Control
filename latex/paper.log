@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  9 FEB 2011 16:31
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.10.11)  9 FEB 2011 17:42
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -15,7 +15,7 @@ orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
 , estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
 rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
 (./ifacconf.cls
-Document Class: ifacconf 2008/04/14, 3.2ModD: IFAC conferences
+Document Class: ifacconf 2007/05/31, 3.2ModD: IFAC conferences
 
 \@frontmatterwidth=\dimen102
 \@bls=\dimen103
@@ -120,21 +120,6 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 1507.
 \@frontindent=\dimen122
 )
-(/var/lib/texmf/tex/generic/babel/babel.sty
-Package: babel 2008/07/06 v3.8l The Babel package
-
-(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
-Language: english 2005/03/30 v3.3o English support from the babel system
-
-(/usr/share/texmf-texlive/tex/generic/babel/babel.def
-File: babel.def 2008/07/06 v3.8l Babel common definitions
-\babel@savecnt=\count107
-\U@D=\dimen123
-)
-\l@canadian = a dialect from \language\l@american 
-\l@australian = a dialect from \language\l@british 
-\l@newzealand = a dialect from \language\l@british 
-))
 (/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -383,17 +368,17 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count108
+\Gread@gobject=\count107
 ))
-\Gin@req@height=\dimen124
-\Gin@req@width=\dimen125
+\Gin@req@height=\dimen123
+\Gin@req@width=\dimen124
 )
 (/usr/share/texmf-texlive/tex/latex/natbib/natbib.sty
 Package: natbib 2009/07/16 8.31 (PWD, AO)
 \bibhang=\skip46
 \bibsep=\skip47
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count109
+\c@NAT@ctr=\count108
 )
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -433,12 +418,12 @@ Package: caption 2009/10/09 v3.1k Customizing captions (AR)
 
 (/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
 Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
-\captionmargin=\dimen126
-\captionmargin@=\dimen127
-\captionwidth=\dimen128
-\caption@indent=\dimen129
-\caption@parindent=\dimen130
-\caption@hangindent=\dimen131
+\captionmargin=\dimen125
+\captionmargin@=\dimen126
+\captionwidth=\dimen127
+\caption@indent=\dimen128
+\caption@parindent=\dimen129
+\caption@hangindent=\dimen130
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 Package caption Info: Unknown document class (or package),
@@ -450,39 +435,39 @@ Package caption Warning: Unsupported document class (or package) detected,
 See the caption package documentation for explanation.
 
 Package caption Info: \@makecaption = macro:->\@makefigurecaption .
-\c@ContinuedFloat=\count110
+\c@ContinuedFloat=\count109
 )
-\c@KVtest=\count111
+\c@KVtest=\count110
 \sf@farskip=\skip50
-\sf@captopadj=\dimen132
+\sf@captopadj=\dimen131
 \sf@capskip=\skip51
 \sf@nearskip=\skip52
-\c@subfigure=\count112
-\c@subfigure@save=\count113
-\c@lofdepth=\count114
-\c@subtable=\count115
-\c@subtable@save=\count116
-\c@lotdepth=\count117
+\c@subfigure=\count111
+\c@subfigure@save=\count112
+\c@lofdepth=\count113
+\c@subtable=\count114
+\c@subtable@save=\count115
+\c@lotdepth=\count116
 \sf@top=\skip53
 \sf@bottom=\skip54
 ) (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count118
+\lst@mode=\count117
 \lst@gtempboxa=\box31
 \lst@token=\toks21
-\lst@length=\count119
-\lst@currlwidth=\dimen133
-\lst@column=\count120
-\lst@pos=\count121
-\lst@lostspace=\dimen134
-\lst@width=\dimen135
-\lst@newlines=\count122
-\lst@lineno=\count123
-\lst@maxwidth=\dimen136
+\lst@length=\count118
+\lst@currlwidth=\dimen132
+\lst@column=\count119
+\lst@pos=\count120
+\lst@lostspace=\dimen133
+\lst@width=\dimen134
+\lst@newlines=\count121
+\lst@lineno=\count122
+\lst@maxwidth=\dimen135
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count124
-\lst@skipnumbers=\count125
+\c@lstnumber=\count123
+\lst@skipnumbers=\count124
 \lst@framebox=\box32
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
@@ -495,44 +480,44 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen137
+\scratchcounter=\count125
+\scratchdimen=\dimen136
 \scratchbox=\box33
-\nofMPsegments=\count127
-\nofMParguments=\count128
+\nofMPsegments=\count126
+\nofMParguments=\count127
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen138
-\MPnumerator=\count130
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen137
+\MPnumerator=\count129
 \everyMPtoPDFconversion=\toks23
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
-LaTeX Info: Redefining \subref on input line 59.
+LaTeX Info: Redefining \subref on input line 36.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count131
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 62.
+\c@lstlisting=\count130
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14> on input line 62.
+(Font)              <14> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.79996> on input line 62.
-\c@sv@footnote=\count132
+(Font)              <9.79996> on input line 39.
+\c@sv@footnote=\count131
  <images/1test.png, id=1, 361.35pt x 297.11pt>
 File: images/1test.png Graphic file (type png)
  <use images/1test.png> [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -546,75 +531,64 @@ File: images/3test-equalize-histogram.png Graphic file (type png)
 File: images/4test-threshold.png Graphic file (type png)
 
 <use images/4test-threshold.png>
-Overfull \hbox (3.25565pt too wide) in paragraph at lines 160--165
+Overfull \hbox (3.25565pt too wide) in paragraph at lines 151--156
  [][][] 
  []
 
 <images/5test-contours.png, id=17, 361.35pt x 297.11pt>
 File: images/5test-contours.png Graphic file (type png)
 
-<use images/5test-contours.png> [2 <./images/3test-equalize-histogram.png (PNG 
-copy)> <./images/4test-threshold.png (PNG copy)> <./images/5test-contours.png (
-PNG copy)>]
+<use images/5test-contours.png>
 
-Package Listings Warning: Text dropped after begin of listing on input line 313
-.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Reference `Objects:createshape:' on page 3 undefined on input li
-ne 369.
-
-[3] <images/6dynamic-objets.png, id=24, 616.3025pt x 506.89375pt>
+[2 <./images/3test-equalize-histogram.png (PNG copy)> <./images/4test-threshold
+.png (PNG copy)> <./images/5test-contours.png (PNG copy)>] [3]
+<images/6dynamic-objets.png, id=24, 616.3025pt x 506.89375pt>
 File: images/6dynamic-objets.png Graphic file (type png)
 
 <use images/6dynamic-objets.png>
 <images/7dynamic-objets-simulation.png, id=26, 615.29875pt x 507.8975pt>
 File: images/7dynamic-objets-simulation.png Graphic file (type png)
 
-<use images/7dynamic-objets-simulation.png> (./paper.bbl
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 20.
+<use images/7dynamic-objets-simulation.png>
 
-(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./paper.bbl
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 18.
+ (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 5939) in paragraph at lines 16--22
-[][]\T1/cmr/m/n/10 Catto, E. (2010).  Box2D v2.0.1 User Man-ual.
+Underfull \hbox (badness 10000) in paragraph at lines 14--20
+\T1/cmtt/m/n/10 google . com / p / pybox2d / downloads / detail ? name = 2 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--22
-\T1/cmtt/m/n/10 http : / / code . google . com / p / pybox2d / downloads /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--22
-\T1/cmtt/m/n/10 detail ? name = 2 . 0 . 2 % 20documentation % 20from %
+Underfull \hbox (badness 10000) in paragraph at lines 14--20
+\T1/cmtt/m/n/10 0 . 2 % 20documentation % 20from % 20wiki % 20archive .
  []
 
 ) [4 <./images/6dynamic-objets.png> <./images/7dynamic-objets-simulation.png>]
-(./paper.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+(./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5582 strings out of 493848
- 74002 string characters out of 1152822
- 309842 words of memory out of 3000000
- 8800 multiletter control sequences out of 15000+50000
+ 5275 strings out of 493848
+ 70404 string characters out of 1152822
+ 215207 words of memory out of 3000000
+ 8504 multiletter control sequences out of 15000+50000
  14418 words of font info for 42 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 44i,10n,45p,222b,1705s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></us
-r/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/
-type1/public/cm-super/sftt1000.pfb>
-Output written on paper.pdf (4 pages, 647592 bytes).
+ 44i,10n,45p,219b,1705s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on paper.pdf (4 pages, 649549 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
